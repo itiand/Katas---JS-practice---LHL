@@ -23,4 +23,28 @@ function chooseStations(array) {
 }
 
 
-chooseStations(stations);
+
+
+//////CodeVille part 2////////
+const moves = ['north', 'north', 'west', 'west', 'north', 'east','north'];
+
+function finalPosition(moves) {
+  let position = [0,0];
+  for(let steps of moves) { //go through each array item
+    if(steps === 'north') {  //if north, +1 y position
+      position[1] += 1;
+    } else if (steps === 'south') { ////south -1 y position
+      position[1] -= 1;
+    } else if (steps === 'east') { ///    //east +1 x position
+      position[0] += 1;
+    } else if (steps === 'west') {
+      position[0] -= 1;
+    } else {
+      return;
+    }
+  }
+  return position;
+
+}
+
+console.log(finalPosition(moves));
