@@ -24,7 +24,6 @@ function chooseStations(array) {
 
 
 
-
 //////CodeVille part 2////////
 const moves = ['north', 'north', 'west', 'west', 'north', 'east','north'];
 
@@ -48,3 +47,98 @@ function finalPosition(moves) {
 }
 
 console.log(finalPosition(moves));
+
+///  BINS
+const bins = {
+  waste: 0,
+  recycling: 0,
+  compost: 0
+}
+
+const smartGarbage = function(trash, bins) {
+  bins[trash] += 1;
+  return bins;
+}
+
+console.log(smartGarbage('waste', bins))
+
+
+
+/// carPassing////////
+const cars = [
+  {
+    time: 1568329654807,
+    speed: 40,
+  },
+  {
+    time: 1568329821632,
+    speed: 42,
+  },
+  {
+    time: 1568331115463,
+    speed: 35
+  }
+]
+
+const speed = 38
+
+function carPassing(cars, speed) {
+  const car = {
+    time: Date.now(),
+    speed: speed,
+  }
+  cars.push(car);
+
+  return cars;
+}
+
+console.log(carPassing(cars, speed));
+
+
+
+
+//function judgeVegetable//////////
+const vegetables = [
+  {
+    submitter: 'Old Man Franklin',
+    redness: 10,
+    plumpness: 5
+  },
+  {
+    submitter: 'Sally Tomato-Grower',
+    redness: 2,
+    plumpness: 8
+  },
+  {
+    submitter: 'Hamid Hamidson',
+    redness: 4,
+    plumpness: 3
+  }
+]
+
+const metric = 'redness'
+
+function judgeVegetable(arrOb, metric) {
+  // const winner = ''
+  //go through the array
+    //check what metric is being judged
+      //vegetable[metric]
+
+    //if winner = {} then winner = vegetable
+      //if vegetable[metric] > winner --> winner = vegetable metric      
+  //return winner.submitter
+
+
+  let winner = {};
+  arrOb.forEach(vegetable => {
+    if(Object.keys(winner).length === 0) {
+      winner = vegetable;
+      return
+    } else if (vegetable[metric] > winner[metric]) {
+      winner = vegetable
+    }
+  });
+  return winner.submitter
+}
+
+console.log(judgeVegetable(vegetables, metric));
