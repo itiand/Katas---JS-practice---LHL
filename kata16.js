@@ -13,58 +13,56 @@ const makeCase = function(input, textCase) {
 
   //what kind of case is requested?
   for(const format of caseArr) {
-    
-    if(format === "camel") {
-      for(let i = 0; i < arrayedInputs.length; i++){
-        if(i !== 0) {
+    switch(format) {
+      case "camel":
+        for(let i = 0; i < arrayedInputs.length; i++){
+          if(i !== 0) {
+            arrayedInputs[i] = arrayedInputs[i].charAt(0).toUpperCase() + arrayedInputs[i].slice(1);
+          }
+        }
+        break;
+      case "pascal":
+        for(let i = 0; i < arrayedInputs.length; i++) {
           arrayedInputs[i] = arrayedInputs[i].charAt(0).toUpperCase() + arrayedInputs[i].slice(1);
         }
-      }
-    }
-
-    if(format === "pascal") {
-      for(let i = 0; i < arrayedInputs.length; i++) {
-        arrayedInputs[i] = arrayedInputs[i].charAt(0).toUpperCase() + arrayedInputs[i].slice(1);
-      }
-    }
-
-    if(format === "title") {
-      for(let i = 0; i < arrayedInputs.length; i++) {
-        arrayedInputs[i] = arrayedInputs[i].charAt(0).toUpperCase() + arrayedInputs[i].slice(1);
-      }
-    }
-
-    if(format === "vowel") {
-      const vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
-      for (let i = 0; i < arrayedInputs.length; i++) {
-        let word = arrayedInputs[i];
-        let wordArr = word.split('');
-        for (let j = 0; j < wordArr.length; j++) {
-          if (vowels.includes(wordArr[j])) {
-            wordArr[j] = wordArr[j].toUpperCase();
-          }
+        break;
+      case "title":
+        for(let i = 0; i < arrayedInputs.length; i++) {
+          arrayedInputs[i] = arrayedInputs[i].charAt(0).toUpperCase() + arrayedInputs[i].slice(1);
         }
-        arrayedInputs[i] = wordArr.join('');
-      }
-    } 
-
-    if(format === "consonant") {
-      for (let i = 0; i < arrayedInputs.length; i++) {
-        let word = arrayedInputs[i];
-        let wordArr = word.split('');
-        for (let j = 0; j < wordArr.length; j++) {
-          if(/[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]/.test(wordArr[j])) {
-            wordArr[j] = wordArr[j].toUpperCase();
+        break;
+      case "vowel":
+        const vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+        for (let i = 0; i < arrayedInputs.length; i++) {
+          let word = arrayedInputs[i];
+          let wordArr = word.split('');
+          for (let j = 0; j < wordArr.length; j++) {
+            if (vowels.includes(wordArr[j])) {
+              wordArr[j] = wordArr[j].toUpperCase();
+            }
           }
+          arrayedInputs[i] = wordArr.join('');
         }
-        arrayedInputs[i] = wordArr.join('');
-      }
-    }
-
-    if(format === 'upper') {
-      for(let i = 0; i < arrayedInputs.length; i++) {
-        arrayedInputs[i] = arrayedInputs[i].toUpperCase();
-      }
+        break;
+      case "consonant":
+        for (let i = 0; i < arrayedInputs.length; i++) {
+          let word = arrayedInputs[i];
+          let wordArr = word.split('');
+          for (let j = 0; j < wordArr.length; j++) {
+            if(/[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]/.test(wordArr[j])) {
+              wordArr[j] = wordArr[j].toUpperCase();
+            }
+          }
+          arrayedInputs[i] = wordArr.join('');
+        }
+        break;
+      case "upper":
+        for(let i = 0; i < arrayedInputs.length; i++) {
+          arrayedInputs[i] = arrayedInputs[i].toUpperCase();
+        }
+        break;
+      default:
+        break;
     }
 
     //JOIN arrayedInputs
@@ -74,7 +72,6 @@ const makeCase = function(input, textCase) {
     else caseFormatted = arrayedInputs.join(' ')
 
   }
-  console.log(textCase)
   return caseFormatted;
 }
 
